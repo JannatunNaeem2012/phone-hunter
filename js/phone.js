@@ -1,5 +1,5 @@
-const loadPhone = async () => {
-    const res = await fetch('https://openapi.programming-hero.com/api/phones?search=iphone')
+const loadPhone = async (searchText) => {
+    const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`)
     const data = await res.json()
     const phones = data.data //the phones are in the object which we named data and data is a property of that obj where the phone details are kept
     console.log(phones)
@@ -9,6 +9,8 @@ const loadPhone = async () => {
 const displayPhone = (materials) => {
     // step1: grab the container
     const container = document.getElementById('phone-container')
+    // clear phone container cards before adding cards
+    container.textContent = '';
 
     materials.forEach(x => {
         // step2: create the phoneCard
@@ -36,6 +38,6 @@ const displayPhone = (materials) => {
 const handleSearch = () =>{
     const searchBox = document.getElementById("search-box")
     const searchText = searchBox.value
+    loadPhone(searchText)
 }
 
-loadPhone()

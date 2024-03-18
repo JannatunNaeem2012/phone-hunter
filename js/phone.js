@@ -12,6 +12,9 @@ const displayPhone = (materials) => {
     // clear phone container cards before adding cards
     container.textContent = '';
 
+    // display only first ten phones
+    materials = materials.slice(0,10)
+
     materials.forEach(x => {
         // step2: create the phoneCard
         const phoneCard = document.createElement('div')

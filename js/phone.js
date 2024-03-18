@@ -34,7 +34,8 @@ const displayPhone = (materials) => {
 
 // handle Search function for button
 const handleSearch = () =>{
-    
+    const searchBox = document.getElementById("search-box")
+    const searchText = searchBox.value
 }
 
 loadPhone()

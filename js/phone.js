@@ -12,8 +12,17 @@ const displayPhone = (materials) => {
     // clear phone container cards before adding cards
     container.textContent = '';
 
+    const loadMoreButton = document.getElementById('load-more-button')
+    // show the load more button if there are more than 10 phones to show
+    if(materials > 5){
+        loadMoreButton.classList.remove('hidden')
+    }
+    else {
+        loadMoreButton.classList.add('hidden')
+    }
+
     // display only first ten phones
-    materials = materials.slice(0,10)
+    materials = materials.slice(0,5)
 
     materials.forEach(x => {
         // step2: create the phoneCard

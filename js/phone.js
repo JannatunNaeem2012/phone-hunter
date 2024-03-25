@@ -44,16 +44,25 @@ const displayPhone = (materials) => {
         // step5: appendchild in the container
         container.appendChild(phoneCard)
     });
+    // call the loader function again and this time pass the parameter value false. because now the data is loaded 
+    toggleLoadingSpinner(false)
 }
 
 // handle Search function for button
 const handleSearch = () =>{
+    toggleLoadingSpinner(true)
     const searchBox = document.getElementById("search-box")
     const searchText = searchBox.value
     loadPhone(searchText)
 }
 
-const toggleLoadingSpinner = () => {
-    
+const toggleLoadingSpinner = (isLoading) => {
+    const loader = document.getElementById('loading-spinner')
+    if(isLoading) {
+        loader.classList.remove('hidden')
+    }
+    else{
+        loader.classList.add('hidden')
+    }
 }
 

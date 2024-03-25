@@ -14,7 +14,7 @@ const displayPhone = (materials) => {
 
     const loadMoreButton = document.getElementById('load-more-button')
     // show the load more button if there are more than 10 phones to show
-    if(materials > 5){
+    if(materials.length > 5){
         loadMoreButton.classList.remove('hidden')
     }
     else {
@@ -51,5 +51,9 @@ const handleSearch = () =>{
     const searchBox = document.getElementById("search-box")
     const searchText = searchBox.value
     loadPhone(searchText)
+}
+
+const toggleLoadingSpinner = () => {
+    
 }
 

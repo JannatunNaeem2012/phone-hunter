@@ -36,8 +36,8 @@ const displayPhone = (materials) => {
             <div class="card-body">
             <h2 class="card-title">${x.phone_name}</h2>
             <p>${x.slug}</p>
-            <div class="card-actions justify-end">
-                <button class="btn btn-primary">Buy Now</button>
+            <div class="card-actions justify-center">
+                <button onclick="handleShowDetails('${x.slug}')" class="btn btn-primary">Show Details</button>
             </div>
             </div>
         `
@@ -66,3 +66,9 @@ const toggleLoadingSpinner = (isLoading) => {
     }
 }
 
+// show product details dynamically button
+const handleShowDetails = (id) => {
+    const res = fetch('https://openapi.programming-hero.com/api/phone/${id}')
+    const data = res.json()
+    console.log(data)
+}

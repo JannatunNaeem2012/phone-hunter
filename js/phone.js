@@ -37,7 +37,19 @@ const displayPhone = (materials) => {
             <h2 class="card-title">${x.phone_name}</h2>
             <p>${x.slug}</p>
             <div class="card-actions justify-center">
-                <button onclick="handleShowDetails('${x.slug}')" class="btn btn-primary">Show Details</button>
+                <button onclick="handleShowDetails('${x.slug}'); show_details_modal.showModal();" class="btn btn-primary">Show Details</button>
+                <dialog id="show_details_modal" class="modal modal-bottom sm:modal-middle">
+                    <div class="modal-box">
+                        <h3 class="font-bold text-lg">Hello!</h3>
+                        <p class="py-4">Press ESC key or click the button below to close</p>
+                        <div class="modal-action">
+                            <form method="dialog">
+                                <!-- if there is a button in form, it will close the modal -->
+                                <button class="btn">Close</button>
+                            </form>
+                        </div>
+                    </div>
+                </dialog>
             </div>
             </div>
         `
@@ -67,8 +79,8 @@ const toggleLoadingSpinner = (isLoading) => {
 }
 
 // show product details dynamically button
-const handleShowDetails = (id) => {
-    const res = fetch('https://openapi.programming-hero.com/api/phone/${id}')
-    const data = res.json()
+const handleShowDetails = async (id) => {
+    const res = await fetch(`https://openapi.programming-hero.com/api/phone/${id}`)
+    const data = await res.json()
     console.log(data)
 }

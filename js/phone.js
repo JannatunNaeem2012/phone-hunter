@@ -37,19 +37,8 @@ const displayPhone = (materials) => {
             <h2 class="card-title">${x.phone_name}</h2>
             <p>${x.slug}</p>
             <div class="card-actions justify-center">
-                <button onclick="handleShowDetails('${x.slug}'); show_details_modal.showModal();" class="btn btn-primary">Show Details</button>
-                <dialog id="show_details_modal" class="modal modal-bottom sm:modal-middle">
-                    <div class="modal-box">
-                        <h3 class="font-bold text-lg">Hello!</h3>
-                        <p class="py-4">Press ESC key or click the button below to close</p>
-                        <div class="modal-action">
-                            <form method="dialog">
-                                <!-- if there is a button in form, it will close the modal -->
-                                <button class="btn">Close</button>
-                            </form>
-                        </div>
-                    </div>
-                </dialog>
+                <button onclick="handleShowDetails('${x.slug}');" class="btn btn-primary">Show Details</button>
+                
             </div>
             </div>
         `
@@ -83,4 +72,23 @@ const handleShowDetails = async (id) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/phone/${id}`)
     const data = await res.json()
     console.log(data)
+    const phone = data.data 
+
+    showPhoneDetails(phone)   
+}
+
+// show modal
+const showPhoneDetails = (phone) => {
+    const modalTitle = document.getElementById('show-details-phone-name')
+    modalTitle.innerText = phone.name
+
+    // add innerhtml to modal container
+    const showDetailContainer = document.getElementById('show-detail-container')
+    showDetailContainer.innerHTML = `
+    <img src="${phone.image}" alt="">
+    <p><span class="font-semibold">Storage:</span>${phone?.mainFeatures?.storage}</p>
+    `
+
+    // show the modal
+    show_details_modal.showModal()
 }
